@@ -6,6 +6,8 @@ interface Props {
   /** Start counting when this becomes true. */
   active: boolean;
   durationMs?: number;
+  /** Stagger the start, in ms. */
+  delayMs?: number;
 }
 
 /**
@@ -13,7 +15,7 @@ interface Props {
  * loop (easeOutCubic), preserving any prefix/suffix text. Jumps straight to the
  * target for users who prefer reduced motion.
  */
-export default function CountUp({ value, active, durationMs = 1200 }: Props) {
+export default function CountUp({ value, active, durationMs = 1600, delayMs = 0 }: Props) {
   const parsed = useMemo(() => {
     const m = value.match(/^(\D*?)(-?\d+(?:\.\d+)?)(.*)$/);
     if (!m) return null;
@@ -38,19 +40,24 @@ export default function CountUp({ value, active, durationMs = 1200 }: Props) {
       return;
     }
 
-    const start = performance.now();
+    let start = 0;
     const tick = (now: number) => {
+      if (!start) start = now;
       const t = Math.min((now - start) / durationMs, 1);
       const eased = 1 - Math.pow(1 - t, 3);
       setN(parsed.target * eased);
       if (t < 1) raf.current = requestAnimationFrame(tick);
     };
-    raf.current = requestAnimationFrame(tick);
+
+    const timer = setTimeout(() => {
+      raf.current = requestAnimationFrame(tick);
+    }, delayMs);
 
     return () => {
+      clearTimeout(timer);
       if (raf.current) cancelAnimationFrame(raf.current);
     };
-  }, [active, parsed, durationMs]);
+  }, [active, parsed, durationMs, delayMs]);
 
   if (!parsed) return <>{value}</>;
   return (

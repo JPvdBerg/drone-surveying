@@ -11,7 +11,11 @@ const REASONS = [
 ];
 
 export default function WhyUs() {
-  const { ref: statsRef, inView: statsInView } = useInView<HTMLDListElement>();
+  // Higher threshold so counting starts once the stats are clearly on screen,
+  // not the instant their bottom edge clips the viewport.
+  const { ref: statsRef, inView: statsInView } = useInView<HTMLDListElement>({
+    threshold: 0.4,
+  });
 
   return (
     <section
@@ -60,7 +64,7 @@ export default function WhyUs() {
         </div>
 
         <dl ref={statsRef} className="grid grid-cols-2 gap-4">
-          {STATS.map(({ value, label }) => (
+          {STATS.map(({ value, label }, i) => (
             <div
               key={label}
               className="rounded-2xl border border-white/10 bg-ink-800 p-6"
@@ -68,7 +72,7 @@ export default function WhyUs() {
               <dt className="sr-only">{label}</dt>
               <dd>
                 <span className="block text-4xl font-extrabold tracking-tight text-white">
-                  <CountUp value={value} active={statsInView} />
+                  <CountUp value={value} active={statsInView} delayMs={i * 120} />
                 </span>
                 <span className="mt-2 block text-sm text-steel-300">{label}</span>
               </dd>
