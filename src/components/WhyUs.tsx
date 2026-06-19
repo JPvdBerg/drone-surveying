@@ -1,5 +1,7 @@
 import { STATS, SERVICE_AREA } from '../data';
 import { CheckIcon } from './Icons';
+import CountUp from './CountUp';
+import { useInView } from '../hooks/useInView';
 
 const REASONS = [
   'Licensed SACAA remote pilots (RPL) on every flight',
@@ -9,6 +11,8 @@ const REASONS = [
 ];
 
 export default function WhyUs() {
+  const { ref: statsRef, inView: statsInView } = useInView<HTMLDListElement>();
+
   return (
     <section
       id="why"
@@ -55,7 +59,7 @@ export default function WhyUs() {
           </div>
         </div>
 
-        <dl className="grid grid-cols-2 gap-4">
+        <dl ref={statsRef} className="grid grid-cols-2 gap-4">
           {STATS.map(({ value, label }) => (
             <div
               key={label}
@@ -64,7 +68,7 @@ export default function WhyUs() {
               <dt className="sr-only">{label}</dt>
               <dd>
                 <span className="block text-4xl font-extrabold tracking-tight text-white">
-                  {value}
+                  <CountUp value={value} active={statsInView} />
                 </span>
                 <span className="mt-2 block text-sm text-steel-300">{label}</span>
               </dd>
