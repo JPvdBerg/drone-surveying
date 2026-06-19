@@ -17,7 +17,7 @@ export const COMPANY = {
   phoneHref: 'tel:+15550142280',
   serviceArea: 'Nationwide · FAA Part 107 certified',
   // WhatsApp click-to-chat: digits only, full international format (no +, spaces).
-  whatsapp: '15550142280',
+  whatsapp: '27824664967',
   whatsappMessage:
     "Hi Apex Aerial Survey, I'd like a quote for a drone survey. My site is located at:",
 };
