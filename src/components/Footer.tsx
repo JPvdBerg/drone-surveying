@@ -1,5 +1,8 @@
-import { COMPANY } from '../data';
-import { DroneIcon } from './Icons';
+import { COMPANY, WHATSAPP_LINK } from '../data';
+import { DroneIcon, FacebookIcon, WhatsAppIcon } from './Icons';
+
+const SOCIAL_LINK =
+  'grid h-11 w-11 place-items-center rounded-lg border border-white/10 text-steel-300 transition-colors hover:border-white/30 hover:text-white';
 
 export default function Footer() {
   return (
@@ -11,10 +14,37 @@ export default function Footer() {
           </span>
           <span className="font-bold text-white">{COMPANY.name}</span>
         </div>
-        <p className="text-sm text-steel-400">
-          © {new Date().getFullYear()} {COMPANY.name}. {COMPANY.serviceArea}.
-        </p>
+
+        {/* Social links */}
+        <ul className="flex items-center gap-3">
+          <li>
+            <a
+              href={COMPANY.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${COMPANY.name} on Facebook`}
+              className={SOCIAL_LINK}
+            >
+              <FacebookIcon className="h-5 w-5" />
+            </a>
+          </li>
+          <li>
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Chat with us on WhatsApp"
+              className={`${SOCIAL_LINK} hover:border-[#25D366]/60 hover:text-[#25D366]`}
+            >
+              <WhatsAppIcon className="h-5 w-5" />
+            </a>
+          </li>
+        </ul>
       </div>
+
+      <p className="container-content mt-8 text-sm text-steel-400">
+        © {new Date().getFullYear()} {COMPANY.name}. {COMPANY.serviceArea}.
+      </p>
     </footer>
   );
 }

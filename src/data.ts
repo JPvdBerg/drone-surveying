@@ -20,7 +20,13 @@ export const COMPANY = {
   whatsapp: '27824664967',
   whatsappMessage:
     "Hi JDHoffman Aerial Solutions, I'd like a quote for a drone survey or inspection. My site is located at:",
+  facebook: 'https://www.facebook.com/profile.php?id=61586920223701',
 };
+
+// Single source of truth for the pre-filled WhatsApp click-to-chat URL.
+export const WHATSAPP_LINK = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(
+  COMPANY.whatsappMessage,
+)}`;
 
 // Local lead-gen: regions we cover. Edit these to match your actual coverage.
 export const SERVICE_AREA = {
