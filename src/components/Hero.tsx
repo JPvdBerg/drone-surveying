@@ -1,9 +1,9 @@
 import { COMPANY } from '../data';
 import { ArrowIcon, ShieldIcon } from './Icons';
 
-// Optimized Unsplash placeholder (aerial survey theme). Width-capped + compressed.
-const HERO_IMG =
-  'https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1400&q=70';
+// Local hero asset served from /public (resolves to the GitHub Pages sub-path).
+// File lives at public/hero-drone.jpg.
+const HERO_IMG = `${import.meta.env.BASE_URL}hero-drone.jpg`;
 
 export default function Hero() {
   return (
@@ -18,8 +18,10 @@ export default function Hero() {
           fetchPriority="high"
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink-950/85 via-ink-950/80 to-ink-950" />
-        <div className="absolute inset-0 blueprint-grid opacity-60" />
+        {/* Left-weighted scrim keeps headline legible while the drone stays visible. */}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/75 to-ink-950/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-transparent to-ink-950/40" />
+        <div className="absolute inset-0 blueprint-grid opacity-40" />
       </div>
 
       <div className="container-content relative pb-20 pt-28 sm:pb-28 sm:pt-36 lg:pb-36 lg:pt-44">
