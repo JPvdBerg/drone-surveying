@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 interface Props {
-  /** e.g. "48 hr", "100%", "1 cm", "4K" — the numeric part animates. */
+  /** e.g. "48 hr", "100%", "1 cm", "4K"; the numeric part animates. */
   value: string;
   /** Start counting when this becomes true. */
   active: boolean;

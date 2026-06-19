@@ -11,7 +11,7 @@
          (Cloudflare/Netlify). See DEPLOYMENT.md. -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; upgrade-insecure-requests"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; upgrade-insecure-requests"
     />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <link rel="icon" type="image/svg+xml" href="/drone-surveying/favicon.svg" />
@@ -46,15 +46,9 @@
       content="Your trusted partner in aerial data: precision drone surveys, building and tower inspections, and mapping across greater Gauteng. SACAA-certified, BVLOS-compliant."
     />
     <meta name="twitter:image" content="https://JPvdBerg.github.io/drone-surveying/og-image.jpg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- dns-prefetch as a fallback for browsers that ignore preconnect. -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Fonts are self-hosted via @fontsource (imported in src/main.tsx), so
+         there is no third-party font CDN to preconnect to or apply SRI against,
+         and font-display: swap is applied by @fontsource automatically. -->
 
     <!--
       Local Business structured data for local SEO (Google rich results).

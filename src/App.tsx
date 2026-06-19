@@ -1,12 +1,16 @@
+import { lazy, Suspense } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import Process from './components/Process';
 import WhyUs from './components/WhyUs';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import FadeIn from './components/FadeIn';
+import { SectionSkeleton, FooterSkeleton } from './components/Skeleton';
+
+// Below-the-fold: code-split so they don't block first paint.
+const Contact = lazy(() => import('./components/Contact'));
+const Footer = lazy(() => import('./components/Footer'));
 
 export default function App() {
   return (
@@ -21,7 +25,6 @@ export default function App() {
       <Header />
       <main id="main">
         <Hero />
-
         <FadeIn>
           <Services />
         </FadeIn>
@@ -31,11 +34,15 @@ export default function App() {
         <FadeIn>
           <WhyUs />
         </FadeIn>
-        <FadeIn>
-          <Contact />
-        </FadeIn>
+        <Suspense fallback={<SectionSkeleton />}>
+          <FadeIn>
+            <Contact />
+          </FadeIn>
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<FooterSkeleton />}>
+        <Footer />
+      </Suspense>
       <WhatsAppButton />
     </>
   );

@@ -1,6 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  // Guard against purging classes that may be applied dynamically (e.g. accent
+  // states built at runtime, or status colours used via string interpolation).
+  safelist: [
+    'opacity-0',
+    'opacity-100',
+    'translate-y-0',
+    'translate-y-8',
+    'animate-pulse',
+    {
+      pattern: /(bg|text|border|ring)-(accent|ink|steel)(-(200|300|400|600|700|800|900|950))?/,
+      variants: ['hover', 'focus', 'active', 'group-hover'],
+    },
+  ],
   theme: {
     extend: {
       colors: {

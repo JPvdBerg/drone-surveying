@@ -5,6 +5,19 @@ import { MailIcon, PhoneIcon, ArrowIcon } from './Icons';
 const SERVICE_OPTIONS = [...SERVICES.map((s) => s.title), 'Other / not sure'];
 
 /**
+ * Masks input as a South African phone number: strips non-digits, caps at 10
+ * digits, and groups them as "082 466 4967".
+ */
+function formatZaPhone(raw: string): string {
+  const digits = raw.replace(/\D/g, '').slice(0, 10);
+  const groups: string[] = [];
+  if (digits.length > 0) groups.push(digits.slice(0, 3));
+  if (digits.length > 3) groups.push(digits.slice(3, 6));
+  if (digits.length > 6) groups.push(digits.slice(6, 10));
+  return groups.join(' ');
+}
+
+/**
  * Static-host friendly contact form.
  *
  * GitHub Pages can't run server code, so on submit we build a well-structured
@@ -14,6 +27,7 @@ const SERVICE_OPTIONS = [...SERVICES.map((s) => s.title), 'Other / not sure'];
  */
 export default function Contact() {
   const [sent, setSent] = useState(false);
+  const [phone, setPhone] = useState('');
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -30,6 +44,7 @@ export default function Contact() {
     const body = [
       `Name: ${name}`,
       `Email: ${email}`,
+      phone ? `Phone: ${phone}` : null,
       company ? `Company: ${company}` : null,
       `Service of interest: ${service || 'Not specified'}`,
       '',
@@ -127,6 +142,19 @@ export default function Contact() {
           </div>
 
           <div className="mt-5 grid gap-5 sm:grid-cols-2">
+            <Field label="Phone" htmlFor="phone" optional>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                inputMode="numeric"
+                autoComplete="tel-national"
+                placeholder="082 466 4967"
+                value={phone}
+                onChange={(e) => setPhone(formatZaPhone(e.target.value))}
+                className={inputClass}
+              />
+            </Field>
             <Field label="Company" htmlFor="company" optional>
               <input
                 id="company"
@@ -136,6 +164,9 @@ export default function Contact() {
                 className={inputClass}
               />
             </Field>
+          </div>
+
+          <div className="mt-5">
             <Field label="Service of interest" htmlFor="service">
               <select id="service" name="service" required defaultValue="" className={inputClass}>
                 <option value="" disabled>

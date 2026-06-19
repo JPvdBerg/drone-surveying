@@ -14,6 +14,8 @@ export default function Hero() {
           src={HERO_IMG}
           alt=""
           aria-hidden="true"
+          width={2000}
+          height={2000}
           loading="eager"
           fetchPriority="high"
           className="h-full w-full object-cover"

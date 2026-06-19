@@ -55,3 +55,29 @@
     background-size: 44px 44px;
   }
 }
+
+/* Clean print output: white paper, black text, no dark fills or backdrops.
+   Complements the per-element print:hidden utilities on the header/FAB. */
+@media print {
+  :root {
+    color-scheme: light;
+  }
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+  /* Flatten dark section/card backgrounds and decorative layers. */
+  section,
+  footer,
+  [class*='bg-ink'],
+  [class*='bg-white/'] {
+    background: #fff !important;
+  }
+  .blueprint-grid,
+  [aria-hidden='true'] img {
+    display: none !important;
+  }
+  h1, h2, h3, p, li, span, dd, dt, a {
+    color: #111 !important;
+  }
+}
