@@ -1,10 +1,10 @@
-# Apex Aerial Survey — Drone Surveying Landing Page
+# Apex Aerial Survey: Drone Surveying Landing Page
 
 A fast, mobile-first, static landing page for a drone surveying company, built
 with **Vite + React + TypeScript + Tailwind CSS** and deployed to **GitHub
 Pages** via GitHub Actions.
 
-> Demo content (company name, contact details, stats) is placeholder copy —
+> Demo content (company name, contact details, stats) is placeholder copy;
 > edit [`src/data.ts`](src/data.ts) to make it yours.
 
 ## Highlights
@@ -13,7 +13,7 @@ Pages** via GitHub Actions.
 - **Accessible**: semantic HTML, ARIA labels, visible focus rings, a skip link,
   AA-contrast text, and `prefers-reduced-motion` support.
 - **No backend**: the contact form builds a pre-filled `mailto:` link, so it
-  works on a purely static host. (Swap in Formspree easily — see below.)
+  works on a purely static host. (Swap in Formspree easily; see below.)
 - **Optimized assets**: inline SVG icons, compressed/width-capped Unsplash hero
   image, system + Google fonts with `preconnect`.
 

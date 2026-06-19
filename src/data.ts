@@ -8,7 +8,7 @@ import {
 
 type Icon = ComponentType<SVGProps<SVGSVGElement>>;
 
-// Central place to edit company details — keeps copy out of components.
+// Central place to edit company details; keeps copy out of components.
 export const COMPANY = {
   name: 'Apex Aerial Survey',
   tagline: 'Survey-grade aerial intelligence',
@@ -44,14 +44,14 @@ export const SERVICES: Service[] = [
     icon: VolumeIcon,
     title: 'Volumetric Calculations',
     blurb:
-      'Accurate stockpile and earthwork volumes from a single flight — reconcile inventory and cut/fill without closing the site.',
+      'Accurate stockpile and earthwork volumes from a single flight. Reconcile inventory and cut/fill without closing the site.',
     points: ['Stockpile inventory', 'Cut & fill analysis', 'Auditable reports'],
   },
   {
     icon: InspectIcon,
     title: 'Asset & Infrastructure Inspection',
     blurb:
-      'Centimeter-resolution imagery of roofs, towers, and corridors — find defects early and keep crews off ladders.',
+      'Centimeter-resolution imagery of roofs, towers, and corridors. Find defects early and keep crews off ladders.',
     points: ['4K & thermal capture', 'Geo-tagged defects', 'No-disruption access'],
   },
 ];

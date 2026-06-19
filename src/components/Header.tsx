@@ -40,7 +40,7 @@ export default function Header() {
         <a
           href="#top"
           className="flex items-center gap-2.5 text-steel-200"
-          aria-label={`${COMPANY.name} — home`}
+          aria-label={`${COMPANY.name}, home`}
         >
           <span className="grid h-9 w-9 place-items-center rounded-md bg-accent text-ink-950">
             <DroneIcon className="h-5 w-5" strokeWidth={1.8} />
@@ -71,7 +71,7 @@ export default function Header() {
           </ul>
         </nav>
 
-        {/* Mobile menu toggle — 44px touch target */}
+        {/* Mobile menu toggle (44px touch target) */}
         <button
           type="button"
           className="grid h-11 w-11 place-items-center rounded-md text-white md:hidden"

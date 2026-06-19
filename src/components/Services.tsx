@@ -14,7 +14,7 @@ export default function Services() {
           </p>
           <p className="mt-4 text-lg text-steel-300">
             Every engagement is scoped to your deliverables and accuracy
-            requirements — no generic data dumps.
+            requirements. No generic data dumps.
           </p>
         </div>
 

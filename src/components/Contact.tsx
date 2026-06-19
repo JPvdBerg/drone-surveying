@@ -10,7 +10,7 @@ const SERVICE_OPTIONS = [...SERVICES.map((s) => s.title), 'Other / not sure'];
  * GitHub Pages can't run server code, so on submit we build a well-structured
  * `mailto:` link (pre-filled subject + body) and hand off to the visitor's
  * email client. To use a hosted handler instead, swap `handleSubmit` for a
- * `fetch` POST to a Formspree endpoint — the field names already match.
+ * `fetch` POST to a Formspree endpoint; the field names already match.
  */
 export default function Contact() {
   const [sent, setSent] = useState(false);
@@ -26,7 +26,7 @@ export default function Contact() {
     const service = String(data.get('service') ?? '').trim();
     const message = String(data.get('message') ?? '').trim();
 
-    const subject = `Survey enquiry — ${service || 'General'}${name ? ` (${name})` : ''}`;
+    const subject = `Survey enquiry: ${service || 'General'}${name ? ` (${name})` : ''}`;
     const body = [
       `Name: ${name}`,
       `Email: ${email}`,
@@ -170,8 +170,8 @@ export default function Contact() {
             <ArrowIcon className="h-5 w-5" />
           </button>
           <p className="mt-3 text-xs text-steel-400">
-            Submitting opens your email app with the details pre-filled — nothing
-            is sent until you hit send.
+            Submitting opens your email app with the details pre-filled, so
+            nothing is sent until you hit send.
           </p>
         </form>
       </div>

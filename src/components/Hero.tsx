@@ -35,7 +35,7 @@ export default function Hero() {
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-steel-300">
-          Topographic mapping, construction monitoring, and volumetric analysis —
+          Topographic mapping, construction monitoring, and volumetric analysis,
           captured by certified pilots and delivered as survey-grade data your
           engineers can trust.
         </p>
