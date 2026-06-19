@@ -1,4 +1,4 @@
-import { STATS } from '../data';
+import { STATS, SERVICE_AREA } from '../data';
 import { CheckIcon } from './Icons';
 
 const REASONS = [
@@ -32,6 +32,27 @@ export default function WhyUs() {
               </li>
             ))}
           </ul>
+
+          {/* Local service area: plain text aids local SEO and sets expectations. */}
+          <div className="mt-10 rounded-2xl border border-white/10 bg-ink-800 p-6">
+            <h3 className="font-mono text-xs uppercase tracking-widest text-accent-400">
+              Service area
+            </h3>
+            <p className="mt-3 text-steel-200">
+              Based in {SERVICE_AREA.hub}, we cover a {SERVICE_AREA.radius} that
+              includes:
+            </p>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {SERVICE_AREA.regions.map((region) => (
+                <li
+                  key={region}
+                  className="rounded-full border border-white/10 bg-ink-900 px-3 py-1 text-sm text-steel-300"
+                >
+                  {region}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <dl className="grid grid-cols-2 gap-4">

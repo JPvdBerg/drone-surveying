@@ -16,6 +16,26 @@ export const COMPANY = {
   phone: '+1 (555) 014-2280',
   phoneHref: 'tel:+15550142280',
   serviceArea: 'Nationwide · FAA Part 107 certified',
+  // WhatsApp click-to-chat: digits only, full international format (no +, spaces).
+  whatsapp: '15550142280',
+  whatsappMessage:
+    "Hi Apex Aerial Survey, I'd like a quote for a drone survey. My site is located at:",
+};
+
+// Local lead-gen: regions we cover. Edit these to match your actual coverage.
+export const SERVICE_AREA = {
+  hub: 'the Greater Denver metro',
+  radius: '75-mile service radius',
+  regions: [
+    'Denver County',
+    'Boulder County',
+    'Jefferson County',
+    'Arapahoe County',
+    'Adams County',
+    'Douglas County',
+    'Larimer County',
+    'Weld County',
+  ],
 };
 
 export interface Service {

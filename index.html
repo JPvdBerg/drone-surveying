@@ -42,6 +42,56 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+
+    <!--
+      Local Business structured data for local SEO (Google rich results).
+      REPLACE every "REPLACE_WITH_*" placeholder with your real details.
+      geoRadius is in METERS (120700 ~= 75 miles).
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "additionalType": "https://www.wikidata.org/wiki/Q1058914",
+        "name": "Apex Aerial Survey",
+        "description": "Survey-grade drone mapping: topographic surveys, construction site monitoring, and volumetric stockpile calculations.",
+        "url": "https://jpvdberg.github.io/drone-surveying/",
+        "image": "https://jpvdberg.github.io/drone-surveying/og-image.jpg",
+        "logo": "https://jpvdberg.github.io/drone-surveying/favicon.svg",
+        "telephone": "+1-555-014-2280",
+        "email": "surveys@apexaerial.example",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "REPLACE_WITH_STREET_ADDRESS",
+          "addressLocality": "REPLACE_WITH_CITY",
+          "addressRegion": "REPLACE_WITH_STATE",
+          "postalCode": "REPLACE_WITH_ZIP",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "REPLACE_WITH_LATITUDE",
+          "longitude": "REPLACE_WITH_LONGITUDE"
+        },
+        "areaServed": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": "REPLACE_WITH_LATITUDE",
+            "longitude": "REPLACE_WITH_LONGITUDE"
+          },
+          "geoRadius": "120700"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "17:00"
+        },
+        "sameAs": []
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

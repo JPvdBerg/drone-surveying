@@ -3,7 +3,7 @@ import { DroneIcon } from './Icons';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-ink-950 py-10">
+    <footer className="border-t border-white/10 bg-ink-950 py-10 pb-28 sm:pb-10">
       <div className="container-content flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-2.5">
           <span className="grid h-8 w-8 place-items-center rounded-md bg-accent text-ink-950">
