@@ -31,13 +31,14 @@ export default function Hero() {
         </p>
 
         <h1 className="mt-6 max-w-3xl text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-          Precision drone surveying for teams that build the real world.
+          Precision drone surveys and inspections across Gauteng.
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-steel-300">
-          Topographic mapping, construction monitoring, and volumetric analysis,
-          captured by certified pilots and delivered as survey-grade data your
-          engineers can trust.
+          From rooftops to remote sites, JDHoffman Aerial Solutions delivers field
+          surveys, building and tower inspections, and aerial mapping, captured by
+          SACAA-certified pilots and delivered as data you can trust. Fast, safe,
+          and BVLOS-compliant.
         </p>
 
         <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">

@@ -1,4 +1,4 @@
-# Apex Aerial Survey: Drone Surveying Landing Page
+# JDHoffman Aerial Solutions: Drone Surveying Landing Page
 
 A fast, mobile-first, static landing page for a drone surveying company, built
 with **Vite + React + TypeScript + Tailwind CSS** and deployed to **GitHub

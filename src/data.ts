@@ -10,31 +10,31 @@ type Icon = ComponentType<SVGProps<SVGSVGElement>>;
 
 // Central place to edit company details; keeps copy out of components.
 export const COMPANY = {
-  name: 'Apex Aerial Survey',
-  tagline: 'Survey-grade aerial intelligence',
-  email: 'surveys@apexaerial.example',
-  phone: '+1 (555) 014-2280',
-  phoneHref: 'tel:+15550142280',
-  serviceArea: 'Nationwide · FAA Part 107 certified',
+  name: 'JDHoffman Aerial Solutions',
+  tagline: 'Your trusted partner in aerial data',
+  email: 'divviej1@gmail.com',
+  phone: '+27 82 466 4967',
+  phoneHref: 'tel:+27824664967',
+  serviceArea: 'Pretoria, Krugersdorp & greater Gauteng · SACAA-certified, BVLOS-compliant',
   // WhatsApp click-to-chat: digits only, full international format (no +, spaces).
   whatsapp: '27824664967',
   whatsappMessage:
-    "Hi Apex Aerial Survey, I'd like a quote for a drone survey. My site is located at:",
+    "Hi JDHoffman Aerial Solutions, I'd like a quote for a drone survey or inspection. My site is located at:",
 };
 
 // Local lead-gen: regions we cover. Edit these to match your actual coverage.
 export const SERVICE_AREA = {
-  hub: 'the Greater Denver metro',
-  radius: '75-mile service radius',
+  hub: 'Krugersdorp and Pretoria',
+  radius: 'service radius across greater Gauteng',
   regions: [
-    'Denver County',
-    'Boulder County',
-    'Jefferson County',
-    'Arapahoe County',
-    'Adams County',
-    'Douglas County',
-    'Larimer County',
-    'Weld County',
+    'Krugersdorp',
+    'Tarlton',
+    'Roodepoort',
+    'Randburg',
+    'Johannesburg',
+    'Pretoria',
+    'Centurion',
+    'Midrand',
   ],
 };
 
@@ -48,31 +48,31 @@ export interface Service {
 export const SERVICES: Service[] = [
   {
     icon: TopoIcon,
-    title: 'Topographic Mapping',
+    title: 'Field & Topographic Surveys',
     blurb:
-      'High-density point clouds and contour maps with survey-grade accuracy, delivered in the CAD and GIS formats your team already uses.',
-    points: ['1–2 cm RTK accuracy', 'Contours, DTM & DSM', 'DWG, DXF, LAS, GeoTIFF'],
-  },
-  {
-    icon: ConstructionIcon,
-    title: 'Construction Site Monitoring',
-    blurb:
-      'Repeatable flight paths capture verifiable progress over time, keeping stakeholders aligned and projects on schedule.',
-    points: ['Scheduled progress flights', 'Design-vs-built overlays', 'Shareable web maps'],
-  },
-  {
-    icon: VolumeIcon,
-    title: 'Volumetric Calculations',
-    blurb:
-      'Accurate stockpile and earthwork volumes from a single flight. Reconcile inventory and cut/fill without closing the site.',
-    points: ['Stockpile inventory', 'Cut & fill analysis', 'Auditable reports'],
+      'Survey-grade field data and contour maps from the air, delivered in the CAD and GIS formats your team already uses.',
+    points: ['RTK/PPK accuracy', 'Contours, DTM & DSM', 'DWG, DXF, LAS, GeoTIFF'],
   },
   {
     icon: InspectIcon,
-    title: 'Asset & Infrastructure Inspection',
+    title: 'Building & Tower Inspections',
     blurb:
-      'Centimeter-resolution imagery of roofs, towers, and corridors. Find defects early and keep crews off ladders.',
-    points: ['4K & thermal capture', 'Geo-tagged defects', 'No-disruption access'],
+      'High-resolution inspections of rooftops, towers, and remote structures. Find defects early and keep crews safely on the ground.',
+    points: ['4K & thermal capture', 'Geo-tagged defects', 'No scaffolding or rope access'],
+  },
+  {
+    icon: VolumeIcon,
+    title: 'Aerial Mapping & Orthomosaics',
+    blurb:
+      'Precision orthomosaics, point clouds, and 3D models that turn a single flight into accurate, shareable site intelligence.',
+    points: ['High-res orthomosaics', 'Point clouds & 3D models', 'Interactive web maps'],
+  },
+  {
+    icon: ConstructionIcon,
+    title: 'Construction & Site Monitoring',
+    blurb:
+      'Repeatable flights capture verifiable progress over time, keeping stakeholders aligned and projects on schedule.',
+    points: ['Scheduled progress flights', 'Volumetric stockpiles', 'Design-vs-built overlays'],
   },
 ];
 
@@ -111,8 +111,8 @@ export interface Stat {
 }
 
 export const STATS: Stat[] = [
-  { value: '1 cm', label: 'Positional accuracy (RTK)' },
-  { value: '500+', label: 'Sites surveyed' },
+  { value: '1 cm', label: 'Survey-grade RTK accuracy' },
+  { value: '4K', label: 'Thermal & visual capture' },
   { value: '48 hr', label: 'Typical turnaround' },
-  { value: '100%', label: 'FAA Part 107 compliant' },
+  { value: '100%', label: 'SACAA-compliant & BVLOS' },
 ];

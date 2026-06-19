@@ -1,0 +1,18 @@
+# HTTP response headers for header-capable hosts (Cloudflare Pages, Netlify).
+# GitHub Pages IGNORES this file, those platforms can't send custom headers,
+# which is exactly why DEPLOYMENT.md recommends fronting the site with Cloudflare.
+# Copied here so the hardened config travels with the repo and applies the moment
+# you move hosting.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), browsing-topics=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+
+# Long-cache the fingerprinted build assets (safe: filenames change on rebuild).
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

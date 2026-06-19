@@ -4,22 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#0a0f14" />
+
+    <!-- Content Security Policy. GitHub Pages can't send real HTTP headers, so we
+         enforce what we can via meta. The full header set (incl. frame-ancestors,
+         HSTS, X-Frame-Options) lives in public/_headers for a header-capable host
+         (Cloudflare/Netlify). See DEPLOYMENT.md. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; upgrade-insecure-requests"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <link rel="icon" type="image/svg+xml" href="/drone-surveying/favicon.svg" />
     <link rel="apple-touch-icon" href="/drone-surveying/favicon.svg" />
-    <title>Apex Aerial Survey | Drone Surveying &amp; Mapping</title>
+    <title>JDHoffman Aerial Solutions | Drone Surveys, Inspections &amp; Mapping</title>
     <meta
       name="description"
-      content="Apex Aerial Survey delivers survey-grade drone mapping: topographic surveys, construction site monitoring, and volumetric stockpile calculations. Fast, accurate, FAA-compliant."
+      content="JDHoffman Aerial Solutions delivers precision drone surveys, building and tower inspections, and aerial mapping across Pretoria, Krugersdorp and greater Gauteng. Fast, safe, SACAA-certified and BVLOS-compliant."
     />
-    <meta name="title" content="Apex Aerial Survey | Drone Surveying &amp; Mapping" />
+    <meta name="title" content="JDHoffman Aerial Solutions | Drone Surveys, Inspections &amp; Mapping" />
     <link rel="canonical" href="https://JPvdBerg.github.io/drone-surveying/" />
-    <meta property="og:title" content="Apex Aerial Survey | Drone Surveying &amp; Mapping" />
+    <meta property="og:title" content="JDHoffman Aerial Solutions | Drone Surveys, Inspections &amp; Mapping" />
     <meta
       property="og:description"
-      content="Survey-grade drone mapping: topographic surveys, construction monitoring, and volumetric calculations."
+      content="Your trusted partner in aerial data: precision drone surveys, building and tower inspections, and mapping across greater Gauteng. SACAA-certified, BVLOS-compliant."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Apex Aerial Survey" />
+    <meta property="og:site_name" content="JDHoffman Aerial Solutions" />
     <meta property="og:url" content="https://JPvdBerg.github.io/drone-surveying/" />
     <!-- Social share image: 1200x630 (1.91:1) is the Facebook/WhatsApp sweet
          spot. Absolute URL is required so scrapers can fetch it. -->
@@ -27,17 +37,20 @@
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Apex Aerial Survey: precision drone surveying and mapping." />
+    <meta property="og:image:alt" content="JDHoffman Aerial Solutions: precision drone surveys, inspections and mapping." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://JPvdBerg.github.io/drone-surveying/" />
-    <meta name="twitter:title" content="Apex Aerial Survey | Drone Surveying &amp; Mapping" />
+    <meta name="twitter:title" content="JDHoffman Aerial Solutions | Drone Surveys, Inspections &amp; Mapping" />
     <meta
       name="twitter:description"
-      content="Survey-grade drone mapping: topographic surveys, construction monitoring, and volumetric calculations."
+      content="Your trusted partner in aerial data: precision drone surveys, building and tower inspections, and mapping across greater Gauteng. SACAA-certified, BVLOS-compliant."
     />
     <meta name="twitter:image" content="https://JPvdBerg.github.io/drone-surveying/og-image.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- dns-prefetch as a fallback for browsers that ignore preconnect. -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
@@ -45,51 +58,60 @@
 
     <!--
       Local Business structured data for local SEO (Google rich results).
-      REPLACE every "REPLACE_WITH_*" placeholder with your real details.
-      geoRadius is in METERS (120700 ~= 75 miles).
+      Coordinates default to the Krugersdorp/Tarlton area; REPLACE the
+      "REPLACE_WITH_*" address fields and confirm lat/long for your actual base.
+      geoRadius is in METERS (70000 = 70 km, covering greater Gauteng).
     -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
         "additionalType": "https://www.wikidata.org/wiki/Q1058914",
-        "name": "Apex Aerial Survey",
-        "description": "Survey-grade drone mapping: topographic surveys, construction site monitoring, and volumetric stockpile calculations.",
+        "name": "JDHoffman Aerial Solutions",
+        "description": "Your trusted partner in aerial data: precision drone surveys, building and tower inspections, and aerial mapping across greater Gauteng. SACAA-certified and BVLOS-compliant.",
         "url": "https://jpvdberg.github.io/drone-surveying/",
         "image": "https://jpvdberg.github.io/drone-surveying/og-image.jpg",
         "logo": "https://jpvdberg.github.io/drone-surveying/favicon.svg",
-        "telephone": "+1-555-014-2280",
-        "email": "surveys@apexaerial.example",
+        "telephone": "+27-82-466-4967",
+        "email": "divviej1@gmail.com",
         "priceRange": "$$",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "REPLACE_WITH_STREET_ADDRESS",
-          "addressLocality": "REPLACE_WITH_CITY",
-          "addressRegion": "REPLACE_WITH_STATE",
-          "postalCode": "REPLACE_WITH_ZIP",
-          "addressCountry": "US"
+          "addressLocality": "Krugersdorp",
+          "addressRegion": "Gauteng",
+          "postalCode": "REPLACE_WITH_POSTAL_CODE",
+          "addressCountry": "ZA"
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": "REPLACE_WITH_LATITUDE",
-          "longitude": "REPLACE_WITH_LONGITUDE"
+          "latitude": "-26.0853",
+          "longitude": "27.7741"
         },
-        "areaServed": {
-          "@type": "GeoCircle",
-          "geoMidpoint": {
-            "@type": "GeoCoordinates",
-            "latitude": "REPLACE_WITH_LATITUDE",
-            "longitude": "REPLACE_WITH_LONGITUDE"
-          },
-          "geoRadius": "120700"
-        },
+        "areaServed": [
+          { "@type": "City", "name": "Krugersdorp" },
+          { "@type": "City", "name": "Roodepoort" },
+          { "@type": "City", "name": "Johannesburg" },
+          { "@type": "City", "name": "Pretoria" },
+          { "@type": "City", "name": "Centurion" },
+          { "@type": "City", "name": "Midrand" },
+          {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+              "@type": "GeoCoordinates",
+              "latitude": "-26.0853",
+              "longitude": "27.7741"
+            },
+            "geoRadius": "70000"
+          }
+        ],
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
           "opens": "08:00",
           "closes": "17:00"
         },
-        "sameAs": []
+        "sameAs": ["https://www.facebook.com/profile.php?id=61586920223701"]
       }
     </script>
   </head>

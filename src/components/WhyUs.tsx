@@ -2,7 +2,7 @@ import { STATS, SERVICE_AREA } from '../data';
 import { CheckIcon } from './Icons';
 
 const REASONS = [
-  'Licensed FAA Part 107 remote pilots on every flight',
+  'Licensed SACAA remote pilots (RPL) on every flight',
   'RTK/PPK workflows for verifiable, survey-grade accuracy',
   'Fully insured operations with documented safety procedures',
   'Deliverables in the CAD & GIS formats your stack expects',

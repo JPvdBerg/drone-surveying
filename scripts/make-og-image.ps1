@@ -64,18 +64,18 @@ $g.DrawRectangle($pen, (Px 9.5), (Py 9.5), 10, 10)
 
 # --- Wordmark next to logo ---
 $wordFont = New-Object System.Drawing.Font('Segoe UI', 30, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
-$g.DrawString('Apex Aerial Survey', $wordFont, (New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::White)), 150, 82)
+$g.DrawString('JDHoffman Aerial Solutions', $wordFont, (New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::White)), 150, 82)
 
 # --- Headline (two lines) ---
 $titleFont = New-Object System.Drawing.Font('Segoe UI', 60, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
 $white = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::White)
-$g.DrawString('Precision drone', $titleFont, $white, 66, 348)
-$g.DrawString('surveying & mapping', $titleFont, $white, 66, 416)
+$g.DrawString('Precision aerial', $titleFont, $white, 66, 348)
+$g.DrawString('surveys & inspections', $titleFont, $white, 66, 416)
 
 # --- Sub-label ---
 $subFont = New-Object System.Drawing.Font('Segoe UI', 25, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Pixel)
 $dot = [char]0x00B7  # middot, built from code point to avoid file-encoding mangling
-$g.DrawString("Topographic  $dot  Construction  $dot  Volumetric  $dot  Inspection",
+$g.DrawString("Surveys  $dot  Inspections  $dot  Mapping  $dot  Greater Gauteng",
   $subFont, (New-Object System.Drawing.SolidBrush $steel), 70, 506)
 
 # Save as JPEG at quality 84 (keeps file well under WhatsApp's preview limit).
