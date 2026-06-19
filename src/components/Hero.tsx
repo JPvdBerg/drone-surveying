@@ -43,7 +43,7 @@ export default function Hero() {
         <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
           <a
             href="#contact"
-            className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg bg-accent px-7 text-base font-semibold text-ink-950 transition-colors hover:bg-accent-600"
+            className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg bg-accent px-7 text-base font-semibold text-ink-950 transition-all duration-200 hover:bg-accent-600 active:scale-95"
           >
             Request a free quote
             <ArrowIcon className="h-5 w-5" />

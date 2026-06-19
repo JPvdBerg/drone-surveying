@@ -22,7 +22,7 @@ export default function Services() {
           {SERVICES.map(({ icon: Icon, title, blurb, points }) => (
             <li
               key={title}
-              className="group rounded-2xl border border-white/10 bg-ink-800 p-6 transition-colors hover:border-accent/50 sm:p-8"
+              className="group rounded-2xl border border-white/10 bg-ink-800 p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/50 hover:shadow-2xl hover:shadow-accent/10 sm:p-8"
             >
               <span className="grid h-12 w-12 place-items-center rounded-xl bg-accent/10 text-accent-400 transition-colors group-hover:bg-accent group-hover:text-ink-950">
                 <Icon className="h-6 w-6" />
