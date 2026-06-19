@@ -1,11 +1,15 @@
 import { COMPANY } from '../data';
 import { ArrowIcon, ShieldIcon } from './Icons';
+import { useGyroParallax } from '../hooks/useGyroParallax';
+import { tapHaptic } from '../lib/haptics';
 
 // Local hero asset served from /public (resolves to the GitHub Pages sub-path).
 // File lives at public/hero-drone.jpg.
 const HERO_IMG = `${import.meta.env.BASE_URL}hero-drone.jpg`;
 
 export default function Hero() {
+  const tilt = useGyroParallax(12);
+
   return (
     <section id="top" className="relative overflow-hidden">
       {/* Background image + gradient scrim for text contrast (AA compliant). */}
@@ -18,12 +22,22 @@ export default function Hero() {
           height={2000}
           loading="eager"
           fetchPriority="high"
-          className="h-full w-full object-cover"
+          // Drone shifts opposite to the tilt; slight scale hides the edges.
+          style={{
+            transform: `translate3d(${-tilt.x}px, ${-tilt.y}px, 0) scale(1.08)`,
+          }}
+          className="h-full w-full object-cover transition-transform duration-100 ease-out will-change-transform"
         />
         {/* Left-weighted scrim keeps headline legible while the drone stays visible. */}
         <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/75 to-ink-950/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-transparent to-ink-950/40" />
-        <div className="absolute inset-0 blueprint-grid opacity-40" />
+        {/* Grid drifts with the tilt at a shallower depth for a layered effect. */}
+        <div
+          style={{
+            transform: `translate3d(${tilt.x * 0.5}px, ${tilt.y * 0.5}px, 0)`,
+          }}
+          className="absolute inset-0 blueprint-grid opacity-40 transition-transform duration-100 ease-out will-change-transform"
+        />
       </div>
 
       <div className="container-content relative pb-20 pt-28 sm:pb-28 sm:pt-36 lg:pb-36 lg:pt-44">
@@ -46,6 +60,7 @@ export default function Hero() {
         <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
           <a
             href="#contact"
+            onClick={() => tapHaptic()}
             className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg bg-accent px-7 text-base font-semibold text-ink-950 transition-all duration-200 hover:bg-accent-600 active:scale-95"
           >
             Request a free quote

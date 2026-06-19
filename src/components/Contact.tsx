@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { COMPANY, SERVICES } from '../data';
 import { MailIcon, PhoneIcon, ArrowIcon } from './Icons';
+import { tapHaptic } from '../lib/haptics';
 
 const SERVICE_OPTIONS = [...SERVICES.map((s) => s.title), 'Other / not sure'];
 
@@ -31,6 +32,7 @@ export default function Contact() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    tapHaptic();
     const form = event.currentTarget;
     const data = new FormData(form);
 

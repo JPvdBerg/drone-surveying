@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { COMPANY } from '../data';
 import { DroneIcon, MenuIcon, CloseIcon } from './Icons';
+import { tapHaptic } from '../lib/haptics';
 
 const NAV = [
   { href: '#services', label: 'Services' },
@@ -63,6 +64,7 @@ export default function Header() {
             <li>
               <a
                 href="#contact"
+                onClick={() => tapHaptic()}
                 className="inline-flex items-center rounded-md bg-accent px-4 py-2 font-semibold text-ink-950 transition-colors hover:bg-accent-600"
               >
                 Request a quote
@@ -78,7 +80,10 @@ export default function Header() {
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'Close menu' : 'Open menu'}
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => {
+            tapHaptic();
+            setOpen((v) => !v);
+          }}
         >
           {open ? <CloseIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
         </button>
@@ -106,7 +111,10 @@ export default function Header() {
             <li className="pt-2">
               <a
                 href="#contact"
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  tapHaptic();
+                  setOpen(false);
+                }}
                 className="flex min-h-[48px] items-center justify-center rounded-lg bg-accent px-4 font-semibold text-ink-950"
               >
                 Request a quote
