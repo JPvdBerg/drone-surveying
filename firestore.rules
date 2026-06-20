@@ -7,19 +7,32 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    // Only these signed-in Google accounts may read data (for the /dashboard).
+    // Edit this list to change who can view leads/analytics.
+    function isOwner() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email in [
+          'drunknine323@gmail.com',
+          'divviej1@gmail.com'
+        ];
+    }
+
     match /leads/{id} {
       allow create: if request.resource.data.name is string
         && request.resource.data.name.size() < 200
         && request.resource.data.email is string
         && request.resource.data.email.size() < 200
         && request.resource.data.message.size() < 5000;
-      allow read, update, delete: if false;
+      allow read: if isOwner();
+      allow update, delete: if false;
     }
 
     match /events/{id} {
       allow create: if request.resource.data.type is string
         && request.resource.data.type.size() < 40;
-      allow read, update, delete: if false;
+      allow read: if isOwner();
+      allow update, delete: if false;
     }
 
     // Everything else is locked.

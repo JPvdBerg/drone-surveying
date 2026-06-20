@@ -13,8 +13,8 @@ export default defineConfig({
     // We ship our own public/robots.txt, so don't let the plugin generate one.
     sitemap({
       hostname: 'https://jdhoffman-aerial-solutions.web.app',
-      // index.html is auto-detected as '/'; exclude the 404 page from the index.
-      exclude: ['/404'],
+      // index.html is auto-detected as '/'; keep the 404 + private dashboard out.
+      exclude: ['/404', '/dashboard'],
       generateRobotsTxt: false,
       readable: true,
     }),
@@ -60,5 +60,13 @@ export default defineConfig({
   build: {
     target: 'es2018',
     cssMinify: true,
+    rollupOptions: {
+      // Multi-page: the private dashboard is a separate entry/bundle so it never
+      // loads with (or bloats) the public site.
+      input: {
+        main: 'index.html',
+        dashboard: 'dashboard.html',
+      },
+    },
   },
 });
