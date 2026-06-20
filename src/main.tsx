@@ -21,6 +21,13 @@ import './index.css';
 // so it stays within the strict 'self' CSP.
 registerSW({ immediate: true });
 
+// Suppress the browser's automatic "Add JDHoffman to Home screen" install
+// banner on mobile (it's intrusive). The app remains installable via the
+// browser's own menu for anyone who wants it.
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.preventDefault();
+});
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ErrorBoundary>
