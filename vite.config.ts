@@ -13,8 +13,9 @@ export default defineConfig({
     // We ship our own public/robots.txt, so don't let the plugin generate one.
     sitemap({
       hostname: 'https://jdhoffman-aerial-solutions.web.app',
-      // index.html is auto-detected as '/'; keep the 404 + private dashboard out.
-      exclude: ['/404', '/dashboard'],
+      // index.html is auto-detected as '/'; keep the 404, private dashboard, and
+      // the Google verification file out of the public sitemap.
+      exclude: ['/404', '/dashboard', '/googlec2d05f5ec9494a13'],
       generateRobotsTxt: false,
       readable: true,
     }),
