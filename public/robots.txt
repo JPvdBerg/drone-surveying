@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jpvdberg.github.io/drone-surveying/sitemap.xml
+Sitemap: https://jdhoffman-aerial-solutions.web.app/sitemap.xml

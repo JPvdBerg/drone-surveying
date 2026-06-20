@@ -1,8 +1,9 @@
 name: Deploy to GitHub Pages
 
+# Superseded by Firebase Hosting (see firebase.json / DEPLOYMENT.md). Kept for
+# reference but no longer runs on push; trigger manually only if reviving Pages.
+# NOTE: Pages needs Vite base '/drone-surveying/'; the repo now builds for '/'.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 # Allow the workflow to publish to GitHub Pages.
