@@ -42,9 +42,19 @@ export default function Footer() {
         </ul>
       </div>
 
-      <p className="container-content mt-8 text-sm text-steel-400">
-        © {new Date().getFullYear()} {COMPANY.name}. {COMPANY.serviceArea}.
-      </p>
+      <div className="container-content mt-8 flex flex-col gap-3 text-sm text-steel-400 sm:flex-row sm:items-center sm:justify-between">
+        <p>
+          © {new Date().getFullYear()} {COMPANY.name}. {COMPANY.serviceArea}.
+        </p>
+        <nav aria-label="Legal" className="flex items-center gap-4">
+          <a href="/privacy" className="hover:text-steel-200">
+            Privacy
+          </a>
+          <a href="/terms" className="hover:text-steel-200">
+            Terms
+          </a>
+        </nav>
+      </div>
     </footer>
   );
 }

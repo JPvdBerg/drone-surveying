@@ -2,8 +2,11 @@ import { useState, type FormEvent } from 'react';
 import { COMPANY, SERVICES } from '../data';
 import { MailIcon, PhoneIcon, ArrowIcon } from './Icons';
 import { tapHaptic } from '../lib/haptics';
+import { trackEvent } from '../lib/analytics';
 
 const SERVICE_OPTIONS = [...SERVICES.map((s) => s.title), 'Other / not sure'];
+
+type Status = 'idle' | 'sending' | 'sent' | 'fallback';
 
 /**
  * Masks input as a South African phone number: strips non-digits, caps at 10
@@ -19,22 +22,26 @@ function formatZaPhone(raw: string): string {
 }
 
 /**
- * Static-host friendly contact form.
- *
- * GitHub Pages can't run server code, so on submit we build a well-structured
- * `mailto:` link (pre-filled subject + body) and hand off to the visitor's
- * email client. To use a hosted handler instead, swap `handleSubmit` for a
- * `fetch` POST to a Formspree endpoint; the field names already match.
+ * Contact form. Submissions are written to the Firestore `leads` collection
+ * (write-only rules; owner reads them in the Firebase console). If Firestore is
+ * unreachable, it falls back to a pre-filled mailto: so a lead is never lost.
+ * A hidden honeypot field traps basic spam bots.
  */
 export default function Contact() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>('idle');
   const [phone, setPhone] = useState('');
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     tapHaptic();
     const form = event.currentTarget;
     const data = new FormData(form);
+
+    // Honeypot: real users never fill this hidden field; bots do.
+    if (String(data.get('company_website') ?? '').trim()) {
+      setStatus('sent');
+      return;
+    }
 
     const name = String(data.get('name') ?? '').trim();
     const email = String(data.get('email') ?? '').trim();
@@ -42,26 +49,41 @@ export default function Contact() {
     const service = String(data.get('service') ?? '').trim();
     const message = String(data.get('message') ?? '').trim();
 
-    const subject = `Survey enquiry: ${service || 'General'}${name ? ` (${name})` : ''}`;
-    const body = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      phone ? `Phone: ${phone}` : null,
-      company ? `Company: ${company}` : null,
-      `Service of interest: ${service || 'Not specified'}`,
-      '',
-      'Project details:',
-      message || '(none provided)',
-    ]
-      .filter((line) => line !== null)
-      .join('\n');
-
-    const mailto = `mailto:${COMPANY.email}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
-
-    window.location.href = mailto;
-    setSent(true);
+    setStatus('sending');
+    try {
+      const { saveLead } = await import('../lib/store');
+      await saveLead({
+        name,
+        email,
+        phone,
+        company,
+        service: service || 'Not specified',
+        message,
+      });
+      trackEvent('lead_submit', { service: service || 'Not specified' });
+      form.reset();
+      setPhone('');
+      setStatus('sent');
+    } catch {
+      // Firestore unavailable: fall back to the visitor's email client.
+      const subject = `Survey enquiry: ${service || 'General'}${name ? ` (${name})` : ''}`;
+      const body = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        phone ? `Phone: ${phone}` : null,
+        company ? `Company: ${company}` : null,
+        `Service of interest: ${service || 'Not specified'}`,
+        '',
+        'Project details:',
+        message || '(none provided)',
+      ]
+        .filter((line) => line !== null)
+        .join('\n');
+      window.location.href = `mailto:${COMPANY.email}?subject=${encodeURIComponent(
+        subject,
+      )}&body=${encodeURIComponent(body)}`;
+      setStatus('fallback');
+    }
   }
 
   return (
@@ -110,15 +132,36 @@ export default function Contact() {
           noValidate
           className="rounded-2xl border border-white/10 bg-ink-900 p-6 sm:p-8"
         >
-          {sent && (
+          {status === 'sent' && (
             <p
               role="status"
               className="mb-6 rounded-lg border border-accent/40 bg-accent/10 px-4 py-3 text-sm text-accent-400"
             >
-              Your email client should have opened with the message ready to send.
-              If it didn't, email us directly at {COMPANY.email}.
+              Thanks, we've received your enquiry and will reply within one
+              business day.
             </p>
           )}
+          {status === 'fallback' && (
+            <p
+              role="status"
+              className="mb-6 rounded-lg border border-accent/40 bg-accent/10 px-4 py-3 text-sm text-accent-400"
+            >
+              Your email app should have opened with the message ready to send. If
+              it didn't, email us directly at {COMPANY.email}.
+            </p>
+          )}
+
+          {/* Honeypot: hidden from users, off-screen and out of the tab order. */}
+          <div className="absolute -left-[9999px]" aria-hidden="true">
+            <label htmlFor="company_website">Leave this field empty</label>
+            <input
+              id="company_website"
+              name="company_website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
 
           <div className="grid gap-5 sm:grid-cols-2">
             <Field label="Full name" htmlFor="name">
@@ -197,14 +240,19 @@ export default function Contact() {
 
           <button
             type="submit"
-            className="mt-7 inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-lg bg-accent px-7 text-base font-semibold text-ink-950 transition-all duration-200 hover:bg-accent-600 active:scale-95 sm:w-auto"
+            disabled={status === 'sending'}
+            className="mt-7 inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-lg bg-accent px-7 text-base font-semibold text-ink-950 transition-all duration-200 hover:bg-accent-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
-            Send enquiry
+            {status === 'sending' ? 'Sending…' : 'Send enquiry'}
             <ArrowIcon className="h-5 w-5" />
           </button>
           <p className="mt-3 text-xs text-steel-400">
-            Submitting opens your email app with the details pre-filled, so
-            nothing is sent until you hit send.
+            We'll only use your details to respond to your enquiry. See our
+            {' '}
+            <a href="/privacy" className="underline hover:text-steel-200">
+              privacy policy
+            </a>
+            .
           </p>
         </form>
       </div>

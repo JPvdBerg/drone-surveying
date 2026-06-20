@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { COMPANY } from '../data';
 import { DroneIcon, MenuIcon, CloseIcon } from './Icons';
 import { tapHaptic } from '../lib/haptics';
+import { trackEvent } from '../lib/analytics';
 
 const NAV = [
   { href: '#services', label: 'Services' },
@@ -64,7 +65,10 @@ export default function Header() {
             <li>
               <a
                 href="#contact"
-                onClick={() => tapHaptic()}
+                onClick={() => {
+                  tapHaptic();
+                  trackEvent('quote_click');
+                }}
                 className="inline-flex items-center rounded-md bg-accent px-4 py-2 font-semibold text-ink-950 transition-colors hover:bg-accent-600"
               >
                 Request a quote
@@ -113,6 +117,7 @@ export default function Header() {
                 href="#contact"
                 onClick={() => {
                   tapHaptic();
+                  trackEvent('quote_click');
                   setOpen(false);
                 }}
                 className="flex min-h-[48px] items-center justify-center rounded-lg bg-accent px-4 font-semibold text-ink-950"

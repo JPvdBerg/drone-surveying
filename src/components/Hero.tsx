@@ -2,6 +2,7 @@ import { COMPANY } from '../data';
 import { ArrowIcon, ShieldIcon } from './Icons';
 import { useGyroParallax } from '../hooks/useGyroParallax';
 import { tapHaptic } from '../lib/haptics';
+import { trackEvent } from '../lib/analytics';
 
 // Local hero asset served from /public (resolves to the GitHub Pages sub-path).
 // File lives at public/hero-drone.jpg.
@@ -60,7 +61,10 @@ export default function Hero() {
         <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
           <a
             href="#contact"
-            onClick={() => tapHaptic()}
+            onClick={() => {
+              tapHaptic();
+              trackEvent('quote_click');
+            }}
             className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg bg-accent px-7 text-base font-semibold text-ink-950 transition-all duration-200 hover:bg-accent-600 active:scale-95"
           >
             Request a free quote

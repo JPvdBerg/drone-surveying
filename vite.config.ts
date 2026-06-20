@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import sitemap from 'vite-plugin-sitemap';
+import { VitePWA } from 'vite-plugin-pwa';
 
 // Firebase Hosting serves the site at the domain root, so base is '/'.
 export default defineConfig({
@@ -17,17 +18,43 @@ export default defineConfig({
       generateRobotsTxt: false,
       readable: true,
     }),
-    // Losslessly/near-losslessly compress images at build time (no manual step).
+    // Installable PWA + offline precache. Registration is called from main.tsx
+    // (injectRegister: false) to keep it inside the strict 'self' CSP.
+    VitePWA({
+      registerType: 'autoUpdate',
+      injectRegister: false,
+      includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
+      manifest: {
+        name: 'JDHoffman Aerial Solutions',
+        short_name: 'JDHoffman',
+        description:
+          'Precision drone surveys, building & tower inspections, and aerial mapping across greater Gauteng.',
+        theme_color: '#0a0f14',
+        background_color: '#0a0f14',
+        display: 'standalone',
+        start_url: '/',
+        icons: [
+          { src: '/pwa-192.png', sizes: '192x192', type: 'image/png' },
+          { src: '/pwa-512.png', sizes: '512x512', type: 'image/png' },
+          {
+            src: '/pwa-512-maskable.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+        ],
+      },
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,svg,png,jpg,woff2}'],
+      },
+    }),
+    // Losslessly/near-losslessly compress raster images at build time. SVGs are
+    // excluded from the test so svgo never touches (or warns about) the favicon.
     ViteImageOptimizer({
+      test: /\.(jpe?g|png|gif|tiff|webp|avif)$/i,
       jpg: { quality: 80 },
       jpeg: { quality: 80 },
       png: { quality: 80 },
-      // svgo defaults, but keep the viewBox so icons scale correctly.
-      svg: {
-        plugins: [
-          { name: 'preset-default', params: { overrides: { removeViewBox: false } } },
-        ],
-      },
     }),
   ],
   build: {
